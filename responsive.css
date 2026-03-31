@@ -1,0 +1,128 @@
+
+/* =========================================
+   💻 Full Responsive Adjustments
+========================================= */
+
+/* --- Global scaling --- */
+html {
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+/* --- Prevent mobile overflow --- */
+body{
+  min-height:100vh;
+  height:auto; /* IMPORTANT FIX */
+  padding:12px;
+}
+
+/* --- App Card --- */
+
+.app-card{
+  position:relative;
+}
+
+.app-card, .melody-theme .app-card {
+  width: min(95%, 880px);
+  padding: clamp(16px, 4vw, 30px);
+  margin: clamp(10px, 2vw, 20px) auto;
+}
+
+/* --- Grid Layout --- */
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr; /* collapse to single column on tablets */
+    gap: clamp(14px, 3vw, 18px);
+  }
+
+/* --- Panel adjustments --- */
+.panel {
+  padding: clamp(14px, 3.5vw, 22px);
+}
+
+/* --- Logo scaling --- */
+.logo {
+  width: clamp(36px, 9vw, 60px);
+  height: clamp(36px, 9vw, 60px);
+}
+.logo img,
+.logo svg {
+  width: 80%;
+  height: auto;
+}
+
+/* --- Typography scaling --- */
+.title h1 {
+  font-size: clamp(20px, 4vw, 34px);
+}
+.title p {
+  font-size: clamp(12px, 2.5vw, 16px);
+}
+
+.tiny {
+  font-size: clamp(12px, 2.5vw, 16px);
+}
+
+/* --- Inputs --- */
+input[type="number"] {
+  font-size: clamp(14px, 3.5vw, 18px);
+  padding: clamp(10px, 3vw, 14px);
+}
+
+/* --- Buttons --- */
+button {
+  font-size: clamp(13px, 3vw, 16px);
+  padding: clamp(8px, 2.5vw, 12px);
+  flex: 1;
+}
+.btns {
+  gap: clamp(6px, 2vw, 10px);
+  flex-wrap: wrap;
+}
+
+/* --- Readout & result --- */
+.readout {
+  padding: clamp(12px, 3vw, 16px);
+}
+.result {
+  font-size: clamp(18px, 4.5vw, 26px);
+}
+
+/* --- History Panel --- */
+.history {
+  max-height: clamp(160px, 35vh, 280px);
+  overflow-y: auto;
+}
+.chip {
+  font-size: clamp(12px, 2.8vw, 14px);
+  padding: clamp(8px, 2vw, 10px);
+}
+
+/* --- Footer --- */
+.footer {
+  flex-direction: column;
+  text-align: center;
+  font-size: clamp(11px, 2.5vw, 14px);
+}
+
+/* --- Decorations (stickers) --- */
+
+.decor4, .decor5 {
+  max-width: 30vw;         /* scale images down on small screens */
+  width: clamp(50px, 15vw, 180px);
+  height: auto;
+}
+
+.decor4, .melody-theme .decor4{
+  display: none;  /* hide decor4 on mobile for less clutter */
+}
+.decor5, .melody-theme .decor5{
+  display: none;  /* hide decor5 on mobile for less clutter */
+}
+
+/* fade down if UI gets tight */
+/* @media (max-width: 600px) {
+  .decor4, .decor5 {
+    opacity: 0.7;           
+    transform: scale(0.8);
+  }
+} */
+}
