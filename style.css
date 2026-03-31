@@ -1,0 +1,513 @@
+/* =========================================
+   1. Root Variables
+========================================= */
+:root {
+  /* Common variables */
+  --ink: #111115;
+  --slate: #1a1b21;
+  --card: #14151b;
+  --success: #38d39f;
+  --warning: #ffd166;
+  --error: #ff6b6b;
+  --radius: 18px;
+  --shadow: 4px 4px #000;
+
+  /* Kuromi Theme Colors (Default) */
+  --kuromi-card-bg: #d9bbed;
+  --kuromi-panel-bg: #8172b3;
+  --kuromi-primary-button-bg: #000000;
+  --kuromi-primary-button-border: #ffffff;
+  --kuromi-panel-border: #574d79;
+  --kuromi-secondary-button-bg: #d9bbed;
+  --kuromi-secondary-button-border: #000000;
+  --kuromi-primary-button-text: #ffffff;
+  --kuromi-text: #000000;
+  --kuromi-muted-text: #000000;
+  --kuromi-accent-light: #5b3e60;
+  --kuromi-accent-dark: #b58aff;
+  --kuromi-input-bg: #d9bbed;
+
+  /* My Melody Theme Colors */
+  --melody-background: #ffc2fc;
+  --melody-card-bg: #ffc2fc;
+  --melody-panel-bg: #f18dde;
+  --melody-button-bg: #a75398;
+  --melody-button-text: #ffffff;
+  --melody-scondary-button-bg: #ffb3e6;
+  --melody-secondary-button-border: #a75398;
+  --melody-text: #7a3b60;
+  --melody-muted-text: #b969ab;
+  --melody-accent-light: #8f7b9c;
+  --melody-accent-dark: #000000;
+  --melody-input-bg: #ffc2fc;
+}
+
+/* =========================================
+   2. Base Page & Layout
+========================================= */
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.kuromi-theme {
+  background: url('kuromi-bg-img.svg') no-repeat center center / cover;
+}
+
+.melody-theme {
+  background: url('melody-bg-img.svg') no-repeat center center / cover;
+  color: var(--melody-text);
+}
+
+/* =========================================
+   3. App Card
+========================================= */
+.app-card {
+  width: min(880px, 100%);
+  padding: 30px;
+  background: var(--kuromi-card-bg);
+  border: 4px solid var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 12px 12px #000;
+  transition: background 0.5s ease;
+}
+
+.melody-theme .app-card {
+  background: var(--melody-card-bg);
+  border-color: var(--text);
+}
+
+/* =========================================
+   4. Decorative Images
+========================================= */
+.app-card::after {
+  position: relative;
+}
+
+.decor {
+  position: absolute;
+  pointer-events: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Kuromi Theme */
+.decor4 {
+  width: 12%;
+  bottom: -2%;
+  left: -1%;
+  background-image: url('kuromi-dressedup.png');
+}
+.decor5 {
+  width: 10%;
+  top: -2%;
+  right: -1%;
+  background-image: url('top-right-bow.png');
+  transform: rotate(30deg); 
+}
+
+/* Melody Theme overrides */
+body.melody-theme .decor4 {
+  background-image: url('melody-dressup.png');
+  width: 10%;
+  bottom: 3.5%;
+  left: 16%;
+}
+body.melody-theme .decor5 {
+  background-image: url('melody-bow-top-right.png');
+  width: 10%;
+  top: 4%;
+  right: 20%;
+  transform: rotate(30deg);
+}
+
+/* =========================================
+   5. Header
+========================================= */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 22px 8px;
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  position: relative;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+.logo img {
+  width: 60px;
+}
+
+.title {
+  line-height: 1.05;
+}
+.title h1 {
+  margin: 0;
+  font-size: clamp(22px, 3.4vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+.title p {
+  margin: 4px 0 0;
+  color: var(--kuromi-muted-text);
+  font-weight: 500;
+  transition: color 0.5s ease;
+}
+
+h1 img {
+  width: 100px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.melody-theme .title span {
+  color: var(--melody-accent-light);
+}
+.melody-theme .title p {
+  color: var(--melody-muted-text);
+}
+
+/* =========================================
+   6. Theme Mode Switch
+========================================= */
+.mode {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--kuromi-panel-bg);
+  border: 2px solid var(--kuromi-panel-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  transition: background 0.5s ease;
+}
+
+.switch {
+  position: relative;
+  width: 54px;
+  height: 28px;
+  background: var(--kuromi-input-bg);
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--kuromi-secondary-button-border);
+  box-shadow: var(--shadow);
+  transition: background 0.5s ease;
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 0.5px solid var(--kuromi-secondary-button-border);
+  background: var(--kuromi-accent-light);
+  transition: 0.25s ease, background 0.5s ease;
+}
+.switch.active .thumb {
+  left: 28px;
+  background: var(--melody-button-bg);
+  border: 0.5px solid var(--melody-accent-dark);
+}
+
+.melody-theme .mode {
+  background-color: var(--melody-panel-bg);
+  border-color: var(--melody-button-bg);
+}
+.melody-theme .switch {
+  background: var(--melody-background);
+  border-color: var(--melody-secondary-button-border);
+}
+.melody-theme .switch.active .thumb {
+  background: var(--melody-button-bg);
+  border-color: var(--melody-text);
+}
+
+/* =========================================
+   7. Content Layout
+========================================= */
+.content {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  padding: 16px 22px 22px;
+}
+
+.panel {
+  background: var(--kuromi-panel-bg);
+  border: 2px solid var(--kuromi-panel-border);
+  border-radius: 16px;
+  padding: 18px;
+  transition: background 0.5s ease;
+  box-shadow: var(--shadow);
+}
+.melody-theme .panel {
+  background: var(--melody-panel-bg);
+  border-color: var(--melody-button-bg);
+}
+
+/* =========================================
+   8. Form Inputs & Buttons
+========================================= */
+.input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--kuromi-input-bg);
+  color: var(--kuromi-text);
+  font-size: 16px;
+  outline: none;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--kuromi-panel-border);
+  transition: border 0.2s ease, transform 0.08s ease, background 0.5s ease, color 0.5s ease;
+}
+
+input[type="number"]:focus {
+  border-color: var(--kuromi-accent-light);
+  box-shadow: var(--shadow);
+}
+
+.melody-theme input[type="number"] {
+  background: var(--melody-input-bg);
+  color: var(--melody-text);
+  border-color: var(--melody-button-bg);
+}
+.melody-theme input[type="number"]:focus {
+  border-color: var(--melody-accent-light);
+  box-shadow: var(--shadow);
+}
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--kuromi-secondary-button-bg);
+  border: 1.5px solid var(--kuromi-secondary-button-border);
+  color: var(--kuromi-button-text);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.06s ease, background 0.2s ease, border-color 0.2s ease;
+}
+button:hover {
+  background: #1b1c27;
+  color: var(--kuromi-primary-button-text);
+  border-color: var(--kuromi-primary-button-border);
+}
+button:active {
+  transform: translateY(1px);
+}
+.primary-button {
+  background: var(--kuromi-primary-button-bg);
+  border: 1.5px solid var(--kuromi-primary-button-border);
+  color: var(--kuromi-primary-button-text);
+}
+
+.melody-theme button {
+  background: var(--melody-background);
+  color: var(--melody-accent-dark);
+  border-color: var(--melody-secondary-button-border);
+}
+.melody-theme button:hover {
+  background: var(--melody-button-bg);
+  color: var(--melody-button-text);
+  border-color: var(--melody-button-text);
+}
+.melody-theme .primary-button {
+  background: var(--melody-button-bg);
+  border-color: var(--melody-button-text);
+  color: var(--melody-button-text);
+}
+
+/* =========================================
+   9. Readout, History & Tools
+========================================= */
+.readout {
+  margin-top: 12px;
+  background: var(--kuromi-input-bg);
+  border: 2px solid var(--kuromi-panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  transition: background 0.5s ease;
+}
+.readout h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--kuromi-muted-text);
+  font-weight: 600;
+  transition: color 0.5s ease;
+}
+.result {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--kuromi-text);
+  transition: color 0.5s ease;
+}
+
+.melody-theme .readout {
+  background: var(--melody-card-bg);
+  border-color: var(--melody-button-bg);
+}
+.melody-theme .readout h3 {
+  color: var(--melody-muted-text);
+}
+.melody-theme .result {
+  color: var(--melody-text);
+}
+
+.history {
+  display: grid;
+  padding-top: 10px;
+  gap: 10px;
+  max-height: 280px;
+  overflow: auto;
+}
+.chip {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--kuromi-input-bg);
+  border: 1px solid var(--kuromi-panel-border);
+  border-radius: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  transition: background 0.5s ease;
+}
+.melody-theme .chip {
+  background: var(--melody-background);
+  border-color: var(--melody-button-bg);
+}
+
+.tools {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#panel-right .tiny {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--kuromi-primary-button-text);
+  gap: 8px;
+}
+.tiny {
+  font-size: 16px;
+  color: var(--kuromi-primary-button-text);
+  transition: color 0.5s ease;
+  font-family: 'Nunito', sans-serif;
+}
+.melody-theme .tiny {
+  color: var(--melody-button-text);
+}
+
+/* =========================================
+   10. Misc Elements
+========================================= */
+#clearHistoryBtn {
+  width: 23px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-left: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.kuromi-voice {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--kuromi-accent-light);
+  transition: color 0.5s ease;
+}
+.kuromi-voice em {
+  color: var(--kuromi-accent-light);
+  font-style: normal;
+  font-weight: 700;
+}
+.melody-theme .kuromi-voice {
+  color: var(--melody-text);
+}
+.melody-theme .kuromi-voice em {
+  color: var(--melody-button-bg);
+}
+
+.footer {
+  padding: 10px 25px 18px;
+  color: var(--kuromi-muted-text);
+  font-size: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.melody-theme .footer {
+  color: var(--melody-accent-dark);
+}
+
+/* =========================================
+   11. Micro Animations
+========================================= */
+.pop {
+  animation: pop 0.18s ease-out;
+}
+@keyframes pop {
+  from { transform: scale(0.98); }
+  to { transform: scale(1); }
+}
+
+.shake {
+  animation: shake 0.22s ease-in-out;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
